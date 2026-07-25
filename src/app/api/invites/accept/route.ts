@@ -1,22 +1,20 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 
-// Rulează cu sesiunea userului logat (după magic link), dar folosește service_role
-// doar pentru pașii care necesită să ocolească RLS: validarea codului + crearea membership-ului.
+// Nu necesită sesiune — codul de invitație (secret, unic, cu expirare) E autorizarea.
+// Creează contul direct cu parolă (email_confirm: true), fără niciun email trimis.
 export async function POST(request: Request) {
-  const { code } = await request.json();
-  if (!code) {
-    return NextResponse.json({ error: "Cod invitație lipsă." }, { status: 400 });
+  const { code, fullName, email, password } = await request.json();
+
+  if (!code || !fullName || !email || !password) {
+    return NextResponse.json({ error: "Lipsesc date din formular." }, { status: 400 });
   }
 
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return NextResponse.json({ error: "Trebuie să fii logat." }, { status: 401 });
+  if (password.length < 8) {
+    return NextResponse.json(
+      { error: "Parola trebuie să aibă cel puțin 8 caractere." },
+      { status: 400 }
+    );
   }
 
   const admin = createAdminClient();
@@ -39,17 +37,36 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invitația a expirat." }, { status: 410 });
   }
 
-  if (invite.email && invite.email.toLowerCase() !== user.email?.toLowerCase()) {
+  if (invite.email && invite.email.toLowerCase() !== email.toLowerCase()) {
     return NextResponse.json(
       { error: "Această invitație e legată de alt email." },
       { status: 403 }
     );
   }
 
+  const { data: created, error: createError } = await admin.auth.admin.createUser({
+    email,
+    password,
+    email_confirm: true,
+    user_metadata: { full_name: fullName },
+  });
+
+  if (createError || !created.user) {
+    const alreadyExists = createError?.message?.toLowerCase().includes("already registered");
+    return NextResponse.json(
+      {
+        error: alreadyExists
+          ? "Există deja un cont cu acest email. Intră direct cu parola ta."
+          : (createError?.message ?? "Nu am putut crea contul."),
+      },
+      { status: alreadyExists ? 409 : 500 }
+    );
+  }
+
   const { error: membershipError } = await admin.from("memberships").upsert(
     {
       org_id: invite.org_id,
-      user_id: user.id,
+      user_id: created.user.id,
       role: invite.role,
       department: invite.department,
       status: "active",
@@ -63,7 +80,7 @@ export async function POST(request: Request) {
 
   await admin
     .from("invites")
-    .update({ used_at: new Date().toISOString(), used_by: user.id })
+    .update({ used_at: new Date().toISOString(), used_by: created.user.id })
     .eq("id", invite.id);
 
   return NextResponse.json({ ok: true, orgId: invite.org_id });

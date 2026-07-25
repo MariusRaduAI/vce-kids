@@ -2,7 +2,9 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import type { Database } from "@/lib/supabase/types";
 
-const PUBLIC_PATHS = ["/login", "/invite", "/auth"];
+// /api e public la nivel de proxy — fiecare route handler își validează singur accesul
+// (ex: /api/invites/accept e autorizat prin codul de invitație, nu printr-o sesiune).
+const PUBLIC_PATHS = ["/login", "/invite", "/api"];
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request });

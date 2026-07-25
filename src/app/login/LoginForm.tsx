@@ -1,11 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
 export function LoginForm() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [password, setPassword] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
@@ -14,31 +17,20 @@ export function LoginForm() {
     setErrorMsg("");
 
     const supabase = createClient();
-    const { error } = await supabase.auth.signInWithOtp({
-      email,
-      options: {
-        emailRedirectTo: `${window.location.origin}/auth/callback`,
-        shouldCreateUser: false, // fără invitație nu-ți poți crea cont
-      },
-    });
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
 
     if (error) {
       setStatus("error");
       setErrorMsg(
-        "Nu găsim un cont cu acest email. Dacă ești nou în echipă, ai nevoie de o invitație de la liderul tău."
+        error.status === 400
+          ? "Email sau parolă greșite."
+          : `Eroare neașteptată: ${error.message}`
       );
       return;
     }
 
-    setStatus("sent");
-  }
-
-  if (status === "sent") {
-    return (
-      <p className="text-sm text-neutral-300">
-        Ți-am trimis un link de acces la <strong>{email}</strong>. Deschide-l de pe telefonul/laptopul pe care vrei să rămâi logat.
-      </p>
-    );
+    router.push("/dashboard");
+    router.refresh();
   }
 
   return (
@@ -51,14 +43,25 @@ export function LoginForm() {
         onChange={(e) => setEmail(e.target.value)}
         className="rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-neutral-500 outline-none focus:border-white/30"
       />
+      <input
+        type="password"
+        required
+        placeholder="Parolă"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        className="rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-neutral-500 outline-none focus:border-white/30"
+      />
       <button
         type="submit"
         disabled={status === "sending"}
         className="rounded-lg bg-white px-4 py-3 font-medium text-black transition hover:bg-neutral-200 disabled:opacity-50"
       >
-        {status === "sending" ? "Se trimite..." : "Trimite-mi link de acces"}
+        {status === "sending" ? "Se conectează..." : "Intră în cont"}
       </button>
       {status === "error" && <p className="text-sm text-red-400">{errorMsg}</p>}
+      <p className="text-center text-xs text-neutral-600">
+        Nu ai cont? Ai nevoie de o invitație de la liderul tău.
+      </p>
     </form>
   );
 }
