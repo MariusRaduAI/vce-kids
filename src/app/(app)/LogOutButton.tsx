@@ -13,7 +13,7 @@ export function LogOutButton() {
         await supabase.auth.signOut();
         router.replace("/login");
       }}
-      className="text-sm text-neutral-500 transition hover:text-white"
+      className="text-sm text-neutral-500 transition hover:text-neutral-900 dark:hover:text-white"
     >
       Ieși din cont
     </button>

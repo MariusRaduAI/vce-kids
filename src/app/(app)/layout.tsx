@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { Settings } from "lucide-react";
 import { getCurrentUser } from "@/lib/current-user";
 import { Sidebar } from "./Sidebar";
 import { LogOutButton } from "./LogOutButton";
@@ -29,16 +31,25 @@ export default async function AppLayout({
   const isOrgAdmin = current.role === "org_admin";
 
   return (
-    <div className="flex bg-neutral-950">
+    <div className="flex bg-white dark:bg-neutral-950">
       <Sidebar orgName={current.organization?.name ?? ""} isOrgAdmin={isOrgAdmin} />
       <div className="flex min-h-screen flex-1 flex-col">
-        <header className="flex items-center justify-between border-b border-white/10 px-6 py-3">
-          <p className="text-sm text-neutral-400">
-            Salut, <span className="text-white">{profile?.full_name ?? "acolo"}</span>
+        <header className="flex items-center justify-between border-b border-black/10 bg-white px-6 py-3 dark:border-white/10 dark:bg-neutral-950">
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">
+            Salut, <span className="text-neutral-900 dark:text-white">{profile?.full_name ?? "acolo"}</span>
           </p>
-          <LogOutButton />
+          <div className="flex items-center gap-4">
+            <Link
+              href="/setari"
+              className="text-neutral-500 transition hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
+              title="Contul meu"
+            >
+              <Settings size={18} />
+            </Link>
+            <LogOutButton />
+          </div>
         </header>
-        <main className="flex-1 px-6 py-8">{children}</main>
+        <main className="flex-1 bg-neutral-950 px-6 py-8">{children}</main>
       </div>
     </div>
   );
