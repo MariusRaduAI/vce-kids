@@ -1,20 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  --background: #fff1f2;
+  --foreground: #881337;
+  --card: #ffffff;
+  --card-foreground: #881337;
+  --primary: #e11d48;
+  --primary-foreground: #ffffff;
+  --secondary: #fb7185;
+  --secondary-foreground: #ffffff;
+  --accent: #2563eb;
+  --accent-foreground: #ffffff;
+  --muted: #ffe4e9;
+  --muted-foreground: #9f2648;
+  --border: #fecdd3;
+  --destructive: #dc2626;
+  --success: #16a34a;
+  --ring: #e11d48;
+}
+
+.dark {
+  --background: #1c0f16;
+  --foreground: #ffe4e9;
+  --card: #2a1620;
+  --card-foreground: #ffe4e9;
+  --primary: #fb7185;
+  --primary-foreground: #2a0a13;
+  --secondary: #e11d48;
+  --secondary-foreground: #ffffff;
+  --accent: #60a5fa;
+  --accent-foreground: #0b1a33;
+  --muted: #3a1e29;
+  --muted-foreground: #e8a8ba;
+  --border: #4a2534;
+  --destructive: #f87171;
+  --success: #4ade80;
+  --ring: #fb7185;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-ring: var(--ring);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: "Baloo 2", var(--font-geist-sans), sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+  transition: background-color 200ms ease, color 200ms ease;
 }

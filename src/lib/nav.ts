@@ -20,5 +20,10 @@ export const NAV_ITEMS: NavItem[] = [
 ];
 
 export const ADMIN_NAV_ITEMS: NavItem[] = [
+  { href: "/coordonare", label: "Coordonare", icon: "compass", status: "live" },
   { href: "/echipa", label: "Echipă & Invitații", icon: "users", status: "live" },
+];
+
+export const PLATFORM_NAV_ITEMS: NavItem[] = [
+  { href: "/vce", label: "VCE — toată rețeaua", icon: "globe", status: "live" },
 ];

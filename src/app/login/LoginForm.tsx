@@ -41,7 +41,7 @@ export function LoginForm() {
         placeholder="email@exemplu.com"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-neutral-500 outline-none focus:border-white/30"
+        className="rounded-2xl border-[3px] border-border bg-background px-4 py-3 font-medium text-foreground placeholder:text-muted-foreground outline-none transition focus:border-primary"
       />
       <input
         type="password"
@@ -49,17 +49,17 @@ export function LoginForm() {
         placeholder="Parolă"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        className="rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-neutral-500 outline-none focus:border-white/30"
+        className="rounded-2xl border-[3px] border-border bg-background px-4 py-3 font-medium text-foreground placeholder:text-muted-foreground outline-none transition focus:border-primary"
       />
       <button
         type="submit"
         disabled={status === "sending"}
-        className="rounded-lg bg-white px-4 py-3 font-medium text-black transition hover:bg-neutral-200 disabled:opacity-50"
+        className="rounded-2xl border-[3px] border-border bg-primary px-4 py-3 font-display font-bold text-primary-foreground shadow-[0_4px_0_0_var(--color-border)] transition active:translate-y-1 active:shadow-none disabled:opacity-50"
       >
         {status === "sending" ? "Se conectează..." : "Intră în cont"}
       </button>
-      {status === "error" && <p className="text-sm text-red-400">{errorMsg}</p>}
-      <p className="text-center text-xs text-neutral-600">
+      {status === "error" && <p className="text-sm font-medium text-destructive">{errorMsg}</p>}
+      <p className="text-center text-xs font-medium text-muted-foreground">
         Nu ai cont? Ai nevoie de o invitație de la liderul tău.
       </p>
     </form>

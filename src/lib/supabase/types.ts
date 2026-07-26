@@ -443,6 +443,61 @@ export interface Database {
         Update: Partial<Database["public"]["Tables"]["coordinator_hub_posts"]["Row"]>;
         Relationships: [];
       };
+      org_objectives: {
+        Row: {
+          id: string;
+          org_id: string;
+          title: string;
+          description: string | null;
+          target_date: string | null;
+          status: "in_progress" | "achieved" | "missed";
+          set_by: string | null;
+          created_at: string;
+        };
+        Insert: Partial<Database["public"]["Tables"]["org_objectives"]["Row"]> & {
+          org_id: string;
+          title: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["org_objectives"]["Row"]>;
+        Relationships: [];
+      };
+      attendance_records: {
+        Row: {
+          id: string;
+          org_id: string;
+          record_date: string;
+          age_group: string;
+          member_count: number;
+          non_member_count: number;
+          notes: string | null;
+          created_by: string | null;
+          created_at: string;
+        };
+        Insert: Partial<Database["public"]["Tables"]["attendance_records"]["Row"]> & {
+          org_id: string;
+          record_date: string;
+          age_group: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["attendance_records"]["Row"]>;
+        Relationships: [];
+      };
+      org_rooms: {
+        Row: {
+          id: string;
+          org_id: string;
+          name: string;
+          age_group: string | null;
+          capacity: number | null;
+          notes: string | null;
+          created_at: string;
+        };
+        Insert: Partial<Database["public"]["Tables"]["org_rooms"]["Row"]> & {
+          org_id: string;
+          name: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["org_rooms"]["Row"]>;
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;

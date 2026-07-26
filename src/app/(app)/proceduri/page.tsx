@@ -41,13 +41,13 @@ export default async function ProceduriPage() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="text-2xl font-semibold text-white">Proceduri & Siguranță</h1>
-      <p className="mt-1 text-neutral-400">
+      <h1 className="font-display text-3xl font-extrabold text-foreground">Proceduri & Siguranță</h1>
+      <p className="mt-1.5 font-medium text-muted-foreground">
         Citește fiecare procedură și confirmă că ai înțeles-o. E important pentru siguranța copiilor.
       </p>
 
       {(procedures ?? []).length === 0 && (
-        <p className="mt-8 text-sm text-neutral-500">
+        <p className="mt-8 text-sm text-muted-foreground">
           Nu există încă proceduri publicate pentru biserica ta.
         </p>
       )}
@@ -55,30 +55,30 @@ export default async function ProceduriPage() {
       <div className="mt-8 space-y-8">
         {Object.entries(grouped).map(([category, items]) => (
           <div key={category}>
-            <h2 className="mb-3 text-sm font-medium uppercase tracking-wider text-neutral-500">
+            <h2 className="mb-3 text-sm font-bold uppercase tracking-wider text-muted-foreground">
               {CATEGORY_LABELS[category] ?? category}
             </h2>
-            <div className="divide-y divide-white/10 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+            <div className="divide-y-[3px] divide-border overflow-hidden rounded-[20px] border-[3px] border-border bg-card">
               {items?.map((p) => {
                 const isConfirmed = confirmedMap.get(p.id) === p.version;
                 return (
                   <Link
                     key={p.id}
                     href={`/proceduri/${p.id}`}
-                    className="flex items-center gap-3 px-4 py-3.5 transition hover:bg-white/[0.06]"
+                    className="flex items-center gap-3 px-4 py-3.5 transition hover:bg-muted"
                   >
                     {isConfirmed ? (
-                      <CheckCircle2 size={18} className="shrink-0 text-emerald-400" />
+                      <CheckCircle2 size={18} className="shrink-0 text-success" />
                     ) : (
-                      <Circle size={18} className="shrink-0 text-neutral-600" />
+                      <Circle size={18} className="shrink-0 text-muted-foreground/50" />
                     )}
-                    <span className="flex-1 text-sm text-white">{p.title}</span>
+                    <span className="flex-1 text-sm font-semibold text-foreground">{p.title}</span>
                     {!p.org_id && (
-                      <span className="rounded-full bg-white/10 px-2 py-0.5 text-xs text-neutral-400">
+                      <span className="rounded-full border-2 border-border bg-muted px-2 py-0.5 text-xs font-bold text-muted-foreground">
                         template
                       </span>
                     )}
-                    <ChevronRight size={16} className="text-neutral-600" />
+                    <ChevronRight size={16} className="text-muted-foreground/50" />
                   </Link>
                 );
               })}
