@@ -21,6 +21,8 @@ export interface Database {
           country: string | null;
           status: "active" | "pending" | "archived";
           logo_url: string | null;
+          mentor_org_id: string | null;
+          curriculum_name: string | null;
           created_at: string;
         };
         Insert: Partial<Database["public"]["Tables"]["organizations"]["Row"]> & {
@@ -139,17 +141,19 @@ export interface Database {
         Row: {
           id: string;
           org_id: string | null;
-          category: "joc" | "craft" | "tehnica_predare" | "altele";
+          category: string;
           title: string;
           description: string | null;
           file_url: string | null;
           age_group: string | null;
           tags: string[];
+          status: "pending" | "approved" | "rejected";
+          submitted_by: string | null;
           created_by: string | null;
           created_at: string;
         };
         Insert: Partial<Database["public"]["Tables"]["resources"]["Row"]> & {
-          category: "joc" | "craft" | "tehnica_predare" | "altele";
+          category: string;
           title: string;
         };
         Update: Partial<Database["public"]["Tables"]["resources"]["Row"]>;
@@ -358,6 +362,85 @@ export interface Database {
           user_id: string;
         };
         Update: Partial<Database["public"]["Tables"]["induction_progress"]["Row"]>;
+        Relationships: [];
+      };
+      org_age_groups: {
+        Row: {
+          id: string;
+          org_id: string;
+          label: string;
+          min_age: number | null;
+          max_age: number | null;
+          sort_order: number;
+          created_at: string;
+        };
+        Insert: Partial<Database["public"]["Tables"]["org_age_groups"]["Row"]> & {
+          org_id: string;
+          label: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["org_age_groups"]["Row"]>;
+        Relationships: [];
+      };
+      org_readiness_checks: {
+        Row: {
+          id: string;
+          title: string;
+          description: string | null;
+          sort_order: number;
+          created_at: string;
+        };
+        Insert: Partial<Database["public"]["Tables"]["org_readiness_checks"]["Row"]> & {
+          title: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["org_readiness_checks"]["Row"]>;
+        Relationships: [];
+      };
+      org_readiness_status: {
+        Row: {
+          id: string;
+          org_id: string;
+          check_id: string;
+          is_complete: boolean;
+          completed_by: string | null;
+          completed_at: string | null;
+          note: string | null;
+        };
+        Insert: Partial<Database["public"]["Tables"]["org_readiness_status"]["Row"]> & {
+          org_id: string;
+          check_id: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["org_readiness_status"]["Row"]>;
+        Relationships: [];
+      };
+      courses: {
+        Row: {
+          id: string;
+          title: string;
+          description: string | null;
+          url: string | null;
+          category: string | null;
+          created_by: string | null;
+          created_at: string;
+        };
+        Insert: Partial<Database["public"]["Tables"]["courses"]["Row"]> & {
+          title: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["courses"]["Row"]>;
+        Relationships: [];
+      };
+      coordinator_hub_posts: {
+        Row: {
+          id: string;
+          title: string;
+          body: string;
+          created_by: string | null;
+          created_at: string;
+        };
+        Insert: Partial<Database["public"]["Tables"]["coordinator_hub_posts"]["Row"]> & {
+          title: string;
+          body: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["coordinator_hub_posts"]["Row"]>;
         Relationships: [];
       };
     };
