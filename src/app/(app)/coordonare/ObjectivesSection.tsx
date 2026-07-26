@@ -67,7 +67,7 @@ export function ObjectivesSection({
         </h2>
       </div>
 
-      <div className="rounded-[20px] border-[3px] border-border bg-card p-5">
+      <div className="rounded-[20px] bg-card shadow-sm ring-1 ring-border/60 p-5">
         {objectives.length === 0 && !showForm && (
           <p className="text-sm text-muted-foreground">Niciun obiectiv setat încă.</p>
         )}
@@ -79,7 +79,7 @@ export function ObjectivesSection({
             return (
               <div
                 key={obj.id}
-                className="flex items-center gap-3 rounded-2xl border-2 border-border bg-background px-4 py-3"
+                className="flex items-center gap-3 rounded-2xl bg-muted px-4 py-3"
               >
                 <Icon size={18} className={`shrink-0 ${meta.color}`} />
                 <div className="flex-1">
@@ -93,7 +93,7 @@ export function ObjectivesSection({
                 <select
                   value={obj.status}
                   onChange={(e) => handleStatus(obj.id, e.target.value as Objective["status"])}
-                  className="rounded-lg border-2 border-border bg-card px-2 py-1 text-xs font-semibold text-foreground outline-none"
+                  className="rounded-lg bg-muted px-2 py-1 text-xs font-semibold text-foreground outline-none"
                 >
                   <option value="in_progress">În lucru</option>
                   <option value="achieved">Atins</option>
@@ -111,13 +111,13 @@ export function ObjectivesSection({
               placeholder="Obiectiv nou"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="flex-1 rounded-xl border-2 border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-primary"
+              className="flex-1 rounded-xl bg-muted px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none ring-1 ring-transparent transition-all focus:bg-card focus:ring-2 focus:ring-primary"
             />
             <input
               type="date"
               value={targetDate}
               onChange={(e) => setTargetDate(e.target.value)}
-              className="rounded-xl border-2 border-border bg-background px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
+              className="rounded-xl bg-muted px-3 py-2 text-sm text-foreground outline-none ring-1 ring-transparent transition-all focus:bg-card focus:ring-2 focus:ring-primary"
             />
             <button
               type="submit"

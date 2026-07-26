@@ -70,19 +70,19 @@ function NodeForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="grid gap-3 rounded-2xl border-2 border-border bg-background p-4 sm:grid-cols-2"
+      className="grid gap-3 rounded-2xl bg-card p-4 shadow-sm ring-1 ring-border/60 sm:grid-cols-2"
     >
       <input
         required
         placeholder="Titlu / rol (ex: Coordonator Kids)"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="rounded-xl border-2 border-border bg-card px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-primary sm:col-span-2"
+        className="rounded-xl bg-muted px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none ring-1 ring-transparent transition-all focus:bg-background focus:ring-2 focus:ring-primary sm:col-span-2"
       />
       <select
         value={parentId}
         onChange={(e) => setParentId(e.target.value)}
-        className="rounded-xl border-2 border-border bg-card px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
+        className="rounded-xl bg-muted px-3 py-2 text-sm text-foreground outline-none ring-1 ring-transparent transition-all focus:bg-background focus:ring-2 focus:ring-primary"
       >
         <option value="">(rădăcină — fără superior)</option>
         {flatten(nodes)
@@ -96,7 +96,7 @@ function NodeForm({
       <select
         value={membershipId}
         onChange={(e) => setMembershipId(e.target.value)}
-        className="rounded-xl border-2 border-border bg-card px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
+        className="rounded-xl bg-muted px-3 py-2 text-sm text-foreground outline-none ring-1 ring-transparent transition-all focus:bg-background focus:ring-2 focus:ring-primary"
       >
         <option value="">(fără persoană din cont legată)</option>
         {members.map((m) => (
@@ -109,7 +109,7 @@ function NodeForm({
         <button
           type="submit"
           disabled={saving}
-          className="rounded-xl bg-primary px-4 py-2 text-sm font-bold text-primary-foreground disabled:opacity-50"
+          className="rounded-xl bg-primary px-4 py-2 text-sm font-bold text-white shadow-md shadow-primary/25 transition-all hover:shadow-lg disabled:opacity-50"
         >
           {saving ? "Se salvează..." : existing ? "Salvează" : "Adaugă"}
         </button>
@@ -165,11 +165,9 @@ function NodeCard({
       {editingId === node.id ? (
         <NodeForm orgId={orgId} nodes={allNodes} members={members} existing={node} onDone={refresh} />
       ) : (
-        <div
-          className={`flex items-center gap-3 rounded-2xl border-[3px] border-border bg-card p-3.5 shadow-[0_3px_0_0_var(--color-border)] ${isRoot ? "bg-gradient-to-br from-card to-muted" : ""}`}
-        >
+        <div className="group flex items-center gap-3 rounded-2xl bg-card p-4 shadow-sm ring-1 ring-border/60 transition-shadow duration-200 hover:shadow-md">
           <div
-            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border-2 border-border text-white ${accent.badge}`}
+            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-sm transition-transform duration-300 group-hover:scale-110 ${accent.grad}`}
           >
             {isRoot ? <Crown size={17} /> : <Users size={16} />}
           </div>
@@ -282,7 +280,7 @@ export function OrgChartManager({
           ) : (
             <button
               onClick={() => setAddingRoot(true)}
-              className="inline-flex items-center gap-2 rounded-xl border-2 border-border bg-card px-4 py-2 text-sm font-bold text-foreground transition hover:bg-muted"
+              className="inline-flex items-center gap-2 rounded-xl bg-card px-4 py-2.5 text-sm font-bold text-foreground shadow-sm ring-1 ring-border/60 transition-shadow hover:shadow-md"
             >
               <Plus size={15} /> Adaugă rol la vârf
             </button>

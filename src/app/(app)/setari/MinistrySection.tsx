@@ -51,7 +51,7 @@ export function MinistrySection({
 
       <form
         onSubmit={handleSubmit}
-        className="grid gap-3 rounded-[24px] border-[3px] border-border bg-card p-5 sm:grid-cols-2"
+        className="grid gap-3 rounded-[24px] bg-card shadow-sm ring-1 ring-border/60 p-5 sm:grid-cols-2"
       >
         <div>
           <label className="mb-1.5 block text-xs font-semibold text-muted-foreground">Nume biserică</label>
@@ -61,7 +61,7 @@ export function MinistrySection({
               setName(e.target.value);
               setSaved(false);
             }}
-            className="w-full rounded-xl border-2 border-border bg-background px-3 py-2.5 text-sm text-foreground outline-none focus:border-primary"
+            className="w-full rounded-xl bg-muted px-3 py-2.5 text-sm text-foreground outline-none ring-1 ring-transparent transition-all focus:bg-card focus:ring-2 focus:ring-primary"
           />
         </div>
         <div>
@@ -72,7 +72,7 @@ export function MinistrySection({
               setCity(e.target.value);
               setSaved(false);
             }}
-            className="w-full rounded-xl border-2 border-border bg-background px-3 py-2.5 text-sm text-foreground outline-none focus:border-primary"
+            className="w-full rounded-xl bg-muted px-3 py-2.5 text-sm text-foreground outline-none ring-1 ring-transparent transition-all focus:bg-card focus:ring-2 focus:ring-primary"
           />
         </div>
         <div>
@@ -83,7 +83,7 @@ export function MinistrySection({
               setCountry(e.target.value);
               setSaved(false);
             }}
-            className="w-full rounded-xl border-2 border-border bg-background px-3 py-2.5 text-sm text-foreground outline-none focus:border-primary"
+            className="w-full rounded-xl bg-muted px-3 py-2.5 text-sm text-foreground outline-none ring-1 ring-transparent transition-all focus:bg-card focus:ring-2 focus:ring-primary"
           />
         </div>
         <div>
@@ -95,7 +95,7 @@ export function MinistrySection({
               setCurriculumName(e.target.value);
               setSaved(false);
             }}
-            className="w-full rounded-xl border-2 border-border bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-primary"
+            className="w-full rounded-xl bg-muted px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none ring-1 ring-transparent transition-all focus:bg-card focus:ring-2 focus:ring-primary"
           />
         </div>
 

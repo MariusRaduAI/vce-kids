@@ -26,16 +26,18 @@ export default async function InductionPage() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="font-display text-3xl font-extrabold text-foreground">Induction</h1>
-      <p className="mt-1.5 font-medium text-muted-foreground">
+      <h1 className="font-display text-3xl font-extrabold tracking-tight text-foreground">
+        Induction
+      </h1>
+      <p className="mt-2 font-medium text-muted-foreground">
         Tot ce trebuie să știi ca să slujești în echipa Vertical Kids.
       </p>
 
       {total > 0 && (
         <div className="mt-6 flex items-center gap-3">
-          <div className="h-3 flex-1 overflow-hidden rounded-full border-2 border-border bg-muted">
+          <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-muted">
             <div
-              className="h-full bg-gradient-to-r from-primary to-secondary transition-all"
+              className="h-full rounded-full bg-gradient-to-r from-orange-400 to-rose-500 transition-all duration-500"
               style={{ width: `${(done / total) * 100}%` }}
             />
           </div>
@@ -45,7 +47,7 @@ export default async function InductionPage() {
         </div>
       )}
 
-      <div className="mt-8 grid gap-3 sm:grid-cols-2">
+      <div className="mt-8 grid gap-4 sm:grid-cols-2">
         {(steps ?? []).map((step) => {
           const isDone = completedIds.has(step.id);
           const accent = accentFor(step.id);
@@ -53,12 +55,12 @@ export default async function InductionPage() {
             <Link
               key={step.id}
               href={`/induction/${step.id}`}
-              className={`flex items-center gap-3 rounded-2xl border-[3px] border-border bg-card p-4 transition hover:-translate-y-0.5 ${accent.ring}`}
+              className="group flex items-center gap-3 rounded-2xl bg-card p-4 shadow-sm ring-1 ring-border/60 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
             >
               <div
-                className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border-2 border-border text-white ${accent.badge}`}
+                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-sm transition-transform duration-300 group-hover:scale-110 ${accent.grad}`}
               >
-                <Sparkles size={15} />
+                <Sparkles size={16} />
               </div>
               <span className="flex-1 text-sm font-bold text-foreground">{step.title}</span>
               {isDone ? (
@@ -66,7 +68,10 @@ export default async function InductionPage() {
               ) : (
                 <Circle size={18} className="shrink-0 text-muted-foreground/40" />
               )}
-              <ChevronRight size={16} className="shrink-0 text-muted-foreground/40" />
+              <ChevronRight
+                size={16}
+                className="shrink-0 text-muted-foreground/40 transition-transform duration-200 group-hover:translate-x-0.5"
+              />
             </Link>
           );
         })}

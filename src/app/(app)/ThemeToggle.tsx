@@ -13,7 +13,7 @@ export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <div className="flex items-center gap-0.5 rounded-lg bg-black/5 p-0.5 dark:bg-white/10">
+    <div className="flex items-center gap-0.5 rounded-xl bg-muted p-1">
       {OPTIONS.map((opt) => {
         const Icon = opt.icon;
         const isActive = theme === opt.value;
@@ -22,10 +22,10 @@ export function ThemeToggle() {
             key={opt.value}
             onClick={() => setTheme(opt.value)}
             title={opt.label}
-            className={`rounded-md p-1.5 transition ${
+            className={`rounded-lg p-1.5 transition-all duration-200 ${
               isActive
-                ? "bg-white text-neutral-900 shadow-sm dark:bg-neutral-700 dark:text-white"
-                : "text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
+                ? "bg-card text-primary shadow-sm"
+                : "text-muted-foreground hover:text-foreground"
             }`}
           >
             <Icon size={14} />

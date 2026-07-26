@@ -31,7 +31,7 @@ export function MentorSelect({
       value={value}
       disabled={saving}
       onChange={(e) => handleChange(e.target.value)}
-      className="rounded-lg border-2 border-border bg-background px-2 py-1 text-xs font-semibold text-foreground outline-none disabled:opacity-50"
+      className="rounded-lg bg-muted px-2 py-1 text-xs font-semibold text-foreground outline-none disabled:opacity-50"
     >
       <option value="">(fără mentor)</option>
       {options

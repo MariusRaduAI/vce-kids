@@ -38,7 +38,7 @@ export default async function VcePage() {
   return (
     <div className="mx-auto max-w-5xl">
       <div className="mb-8 flex items-center gap-3">
-        <div className="flex h-11 w-11 items-center justify-center rounded-2xl border-[3px] border-border bg-gradient-to-br from-primary to-accent text-primary-foreground">
+        <div className="flex h-11 w-11 items-center justify-center rounded-2xl shadow-lg bg-gradient-to-br from-primary to-accent text-primary-foreground">
           <Globe size={20} />
         </div>
         <div>
@@ -62,7 +62,7 @@ export default async function VcePage() {
           const achievedCount = orgObjectives.filter((o) => o.status === "achieved").length;
 
           return (
-            <div key={org.id} className="rounded-[24px] border-[3px] border-border bg-card p-5">
+            <div key={org.id} className="rounded-[24px] bg-card shadow-sm ring-1 ring-border/60 p-5">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
                   <p className="font-display text-lg font-bold text-foreground">{org.name}</p>
@@ -82,19 +82,19 @@ export default async function VcePage() {
               </div>
 
               <div className="mt-4 grid gap-3 sm:grid-cols-4">
-                <div className="rounded-2xl border-2 border-border bg-background px-3 py-2.5">
+                <div className="rounded-2xl bg-muted px-3 py-2.5">
                   <div className="flex items-center gap-1.5 text-xs font-bold text-muted-foreground">
                     <Users size={13} /> Oameni
                   </div>
                   <p className="mt-1 text-xl font-extrabold text-foreground">{peopleCount}</p>
                 </div>
-                <div className="rounded-2xl border-2 border-border bg-background px-3 py-2.5">
+                <div className="rounded-2xl bg-muted px-3 py-2.5">
                   <div className="flex items-center gap-1.5 text-xs font-bold text-muted-foreground">
                     <BarChart3 size={13} /> Copii (3 luni)
                   </div>
                   <p className="mt-1 text-xl font-extrabold text-foreground">{attendanceTotal}</p>
                 </div>
-                <div className="rounded-2xl border-2 border-border bg-background px-3 py-2.5">
+                <div className="rounded-2xl bg-muted px-3 py-2.5">
                   <div className="flex items-center gap-1.5 text-xs font-bold text-muted-foreground">
                     <CheckSquare size={13} /> Checklist VCE
                   </div>
@@ -102,7 +102,7 @@ export default async function VcePage() {
                     {doneChecks}/{totalChecks}
                   </p>
                 </div>
-                <div className="rounded-2xl border-2 border-border bg-background px-3 py-2.5">
+                <div className="rounded-2xl bg-muted px-3 py-2.5">
                   <div className="flex items-center gap-1.5 text-xs font-bold text-muted-foreground">
                     <Target size={13} /> Obiective atinse
                   </div>

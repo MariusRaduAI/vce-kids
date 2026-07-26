@@ -40,15 +40,15 @@ export default async function AppLayout({
         isPlatformAdmin={isPlatformAdmin}
       />
       <div className="flex min-h-screen flex-1 flex-col">
-        <header className="flex items-center justify-between border-b-4 border-border bg-card px-6 py-3">
+        <header className="flex items-center justify-between bg-card px-8 py-4 shadow-sm ring-1 ring-border/60">
           <p className="text-sm font-medium text-muted-foreground">
             Salut, <span className="font-bold text-foreground">{profile?.full_name ?? "acolo"}</span>
           </p>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-5">
             <ThemeToggle />
             <Link
               href="/setari"
-              className="text-muted-foreground transition hover:text-foreground"
+              className="text-muted-foreground transition-colors duration-200 hover:text-primary"
               title="Contul meu"
             >
               <Settings size={18} />
@@ -56,7 +56,7 @@ export default async function AppLayout({
             <LogOutButton />
           </div>
         </header>
-        <main className="flex-1 bg-background px-6 py-8">{children}</main>
+        <main className="flex-1 bg-background px-8 py-10">{children}</main>
       </div>
     </div>
   );

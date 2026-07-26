@@ -63,12 +63,12 @@ export default async function CoordonarePage() {
             Echipă ({orgMemberships?.length ?? 0})
           </h2>
         </div>
-        <div className="rounded-[20px] border-[3px] border-border bg-card p-5">
+        <div className="rounded-[20px] bg-card shadow-sm ring-1 ring-border/60 p-5">
           <div className="grid gap-2 sm:grid-cols-2">
             {(orgMemberships ?? []).map((m) => (
               <div
                 key={m.id}
-                className="flex items-center justify-between rounded-xl border-2 border-border bg-background px-3 py-2 text-sm"
+                className="flex items-center justify-between rounded-xl bg-muted px-3 py-2 text-sm"
               >
                 <span className="font-semibold text-foreground">
                   {profiles?.find((p) => p.id === m.user_id)?.full_name ?? "—"}
@@ -96,13 +96,13 @@ export default async function CoordonarePage() {
             Feedback recent {incidentCount > 0 && `· ${incidentCount} incidente`}
           </h2>
         </div>
-        <div className="rounded-[20px] border-[3px] border-border bg-card p-5">
+        <div className="rounded-[20px] bg-card shadow-sm ring-1 ring-border/60 p-5">
           {(feedback ?? []).length === 0 ? (
             <p className="text-sm text-muted-foreground">Niciun feedback încă.</p>
           ) : (
             <div className="space-y-2">
               {feedback?.map((f) => (
-                <div key={f.id} className="rounded-xl border-2 border-border bg-background px-3 py-2">
+                <div key={f.id} className="rounded-xl bg-muted px-3 py-2">
                   <div className="flex items-center justify-between">
                     <span
                       className={`text-xs font-bold uppercase ${f.category === "incident" ? "text-destructive" : "text-accent"}`}

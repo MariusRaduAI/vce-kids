@@ -39,8 +39,10 @@ export default async function ResursePage() {
 
   return (
     <div className="mx-auto max-w-4xl">
-      <h1 className="font-display text-3xl font-extrabold text-foreground">Resurse</h1>
-      <p className="mt-1.5 font-medium text-muted-foreground">
+      <h1 className="font-display text-3xl font-extrabold tracking-tight text-foreground">
+        Resurse
+      </h1>
+      <p className="mt-2 font-medium text-muted-foreground">
         Materiale utile pentru activități: jocuri, craft-uri, ghiduri, template-uri și cărți recomandate.
       </p>
 
@@ -48,22 +50,24 @@ export default async function ResursePage() {
         <p className="mt-8 text-sm text-muted-foreground">Nu există încă resurse publicate.</p>
       )}
 
-      <div className="mt-8 space-y-8">
+      <div className="mt-8 space-y-10">
         {Object.entries(grouped).map(([category, items]) => {
           const accent = accentFor(category);
           return (
             <div key={category}>
-              <h2 className="mb-3 flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-muted-foreground">
-                <span className={`flex h-6 w-6 items-center justify-center rounded-lg text-white ${accent.badge}`}>
+              <h2 className="mb-4 flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-muted-foreground">
+                <span
+                  className={`flex h-6 w-6 items-center justify-center rounded-lg bg-gradient-to-br text-white ${accent.grad}`}
+                >
                   <FolderOpen size={13} />
                 </span>
                 {CATEGORY_LABELS[category] ?? category}
               </h2>
-              <div className="grid gap-3 sm:grid-cols-2">
+              <div className="grid gap-4 sm:grid-cols-2">
                 {items?.map((r) => (
                   <div
                     key={r.id}
-                    className="flex items-center gap-3 rounded-2xl border-[3px] border-border bg-card p-4"
+                    className="flex items-center gap-3 rounded-2xl bg-card p-4 shadow-sm ring-1 ring-border/60 transition-shadow duration-200 hover:shadow-md"
                   >
                     <div className="min-w-0 flex-1">
                       <p className="text-sm font-bold text-foreground">{r.title}</p>
@@ -76,7 +80,7 @@ export default async function ResursePage() {
                         href={r.file_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`inline-flex shrink-0 items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold text-white transition ${accent.badge}`}
+                        className={`inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-gradient-to-r px-3 py-1.5 text-xs font-bold text-white shadow-sm transition-transform duration-200 hover:scale-105 ${accent.grad}`}
                       >
                         <Download size={13} /> Deschide
                       </a>
@@ -89,7 +93,7 @@ export default async function ResursePage() {
         })}
 
         <div>
-          <h2 className="mb-3 flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-muted-foreground">
+          <h2 className="mb-4 flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-muted-foreground">
             <BookOpen size={14} /> Cărți recomandate
           </h2>
           {(books ?? []).length === 0 ? (
@@ -97,13 +101,16 @@ export default async function ResursePage() {
               Nicio recomandare de carte încă — adminul poate adăuga primele titluri.
             </p>
           ) : (
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {books?.map((b) => {
                 const accent = accentFor(b.id);
                 return (
-                  <div key={b.id} className="rounded-2xl border-[3px] border-border bg-card p-4">
+                  <div
+                    key={b.id}
+                    className="rounded-2xl bg-card p-4 shadow-sm ring-1 ring-border/60 transition-shadow duration-200 hover:shadow-md"
+                  >
                     <div
-                      className={`mb-2 flex h-9 w-9 items-center justify-center rounded-xl text-sm font-extrabold text-white ${accent.badge}`}
+                      className={`mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br text-sm font-extrabold text-white shadow-sm ${accent.grad}`}
                     >
                       {b.title.charAt(0)}
                     </div>

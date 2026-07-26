@@ -29,13 +29,13 @@ export default async function InvitePage({
 
       <div className="relative w-full max-w-sm">
         <div className="mb-8 text-center">
-          <div className="mb-4 inline-flex h-16 w-16 rotate-[-4deg] items-center justify-center rounded-3xl border-4 border-border bg-gradient-to-br from-primary to-secondary text-2xl font-extrabold text-primary-foreground shadow-[0_6px_0_0_var(--color-border)]">
+          <div className="mb-4 inline-flex h-16 w-16 rotate-[-4deg] items-center justify-center rounded-3xl border-4 border-border bg-gradient-to-br from-primary to-secondary text-2xl font-extrabold text-primary-foreground shadow-md">
             VK
           </div>
           <h1 className="font-display text-3xl font-extrabold text-foreground">VCE Kids</h1>
         </div>
 
-        <div className="rounded-[28px] border-4 border-border bg-card p-6 shadow-[0_8px_0_0_var(--color-border),0_20px_40px_-20px_rgba(225,29,72,0.35)]">
+        <div className="rounded-[28px] border-4 border-border bg-card p-6 shadow-md">
           {isInvalid || !invite || !org ? (
             <p className="text-sm font-semibold text-destructive">
               Această invitație nu (mai) este validă. Cere-i liderului tău una nouă.

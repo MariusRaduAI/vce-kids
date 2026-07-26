@@ -58,7 +58,7 @@ export function RoomsSection({
         <h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Săli</h2>
       </div>
 
-      <div className="rounded-[20px] border-[3px] border-border bg-card p-5">
+      <div className="rounded-[20px] bg-card shadow-sm ring-1 ring-border/60 p-5">
         {rooms.length === 0 && !showForm && (
           <p className="text-sm text-muted-foreground">Nicio sală configurată încă.</p>
         )}
@@ -67,7 +67,7 @@ export function RoomsSection({
           {rooms.map((room) => (
             <div
               key={room.id}
-              className="flex items-center justify-between rounded-xl border-2 border-border bg-background px-3 py-2"
+              className="flex items-center justify-between rounded-xl bg-muted px-3 py-2"
             >
               <div>
                 <p className="text-sm font-semibold text-foreground">{room.name}</p>
@@ -93,13 +93,13 @@ export function RoomsSection({
               placeholder="Nume sală"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="rounded-xl border-2 border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-primary"
+              className="rounded-xl bg-muted px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none ring-1 ring-transparent transition-all focus:bg-card focus:ring-2 focus:ring-primary"
             />
             <input
               placeholder="Grupă (opțional)"
               value={ageGroup}
               onChange={(e) => setAgeGroup(e.target.value)}
-              className="rounded-xl border-2 border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-primary"
+              className="rounded-xl bg-muted px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none ring-1 ring-transparent transition-all focus:bg-card focus:ring-2 focus:ring-primary"
             />
             <input
               type="number"
@@ -107,7 +107,7 @@ export function RoomsSection({
               placeholder="Capacitate"
               value={capacity}
               onChange={(e) => setCapacity(e.target.value)}
-              className="rounded-xl border-2 border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-primary"
+              className="rounded-xl bg-muted px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none ring-1 ring-transparent transition-all focus:bg-card focus:ring-2 focus:ring-primary"
             />
             <button
               type="submit"

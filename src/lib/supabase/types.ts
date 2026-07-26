@@ -223,6 +223,7 @@ export interface Database {
           lesson_id: string | null;
           assigned_membership_id: string | null;
           notes: string | null;
+          sort_order: number;
           created_at: string;
         };
         Insert: Partial<Database["public"]["Tables"]["sim_slots"]["Row"]> & {

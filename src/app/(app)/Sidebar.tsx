@@ -49,12 +49,12 @@ function NavLink({ item }: { item: NavItem }) {
 
   const content = (
     <span
-      className={`group flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-semibold transition ${
+      className={`group flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-semibold transition-all duration-200 ${
         isActive
-          ? "bg-primary text-primary-foreground shadow-[0_3px_0_0_var(--color-border)]"
+          ? "bg-gradient-to-r from-orange-400 to-rose-500 text-white shadow-md shadow-orange-500/25"
           : isSoon
             ? "text-muted-foreground/50"
-            : "text-foreground/70 hover:bg-muted hover:text-foreground"
+            : "text-foreground/65 hover:bg-muted hover:text-foreground"
       }`}
     >
       <Icon size={17} strokeWidth={2.25} className="shrink-0" />
@@ -80,9 +80,9 @@ export function Sidebar({
   isPlatformAdmin: boolean;
 }) {
   return (
-    <aside className="flex h-screen w-64 shrink-0 flex-col border-r-4 border-border bg-card px-3 py-4">
-      <div className="mb-6 flex items-center gap-3 px-2">
-        <div className="flex h-10 w-10 shrink-0 rotate-[-3deg] items-center justify-center rounded-2xl border-[3px] border-border bg-gradient-to-br from-primary to-secondary text-sm font-extrabold text-primary-foreground shadow-[0_3px_0_0_var(--color-border)]">
+    <aside className="flex h-screen w-64 shrink-0 flex-col bg-card px-3 py-5 shadow-sm ring-1 ring-border/60">
+      <div className="mb-7 flex items-center gap-3 px-2">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-400 to-rose-500 text-sm font-extrabold text-white shadow-md shadow-orange-500/25">
           VK
         </div>
         <div className="min-w-0">
@@ -98,7 +98,7 @@ export function Sidebar({
 
         {isOrgAdmin && (
           <>
-            <div className="mt-4 mb-1 px-3 text-xs font-bold uppercase tracking-wider text-muted-foreground/60">
+            <div className="mt-5 mb-1.5 px-3 text-xs font-bold uppercase tracking-wider text-muted-foreground/60">
               Administrare
             </div>
             {ADMIN_NAV_ITEMS.map((item) => (
@@ -109,7 +109,7 @@ export function Sidebar({
 
         {isPlatformAdmin && (
           <>
-            <div className="mt-4 mb-1 px-3 text-xs font-bold uppercase tracking-wider text-muted-foreground/60">
+            <div className="mt-5 mb-1.5 px-3 text-xs font-bold uppercase tracking-wider text-muted-foreground/60">
               VCE — rețea
             </div>
             {PLATFORM_NAV_ITEMS.map((item) => (

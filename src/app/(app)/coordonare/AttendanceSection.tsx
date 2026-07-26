@@ -71,7 +71,7 @@ export function AttendanceSection({
         </h2>
       </div>
 
-      <div className="rounded-[20px] border-[3px] border-border bg-card p-5">
+      <div className="rounded-[20px] bg-card shadow-sm ring-1 ring-border/60 p-5">
         {records.length === 0 && !showForm && (
           <p className="text-sm text-muted-foreground">Nicio înregistrare de prezență încă.</p>
         )}
@@ -80,7 +80,7 @@ export function AttendanceSection({
           {records.slice(0, 8).map((r) => (
             <div
               key={r.id}
-              className="flex items-center justify-between rounded-xl border-2 border-border bg-background px-3 py-2 text-sm"
+              className="flex items-center justify-between rounded-xl bg-muted px-3 py-2 text-sm"
             >
               <span className="font-semibold text-foreground">
                 {new Date(r.record_date).toLocaleDateString("ro-RO")} · {r.age_group}
@@ -99,14 +99,14 @@ export function AttendanceSection({
               required
               value={recordDate}
               onChange={(e) => setRecordDate(e.target.value)}
-              className="rounded-xl border-2 border-border bg-background px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
+              className="rounded-xl bg-muted px-3 py-2 text-sm text-foreground outline-none ring-1 ring-transparent transition-all focus:bg-card focus:ring-2 focus:ring-primary"
             />
             <input
               placeholder="Grupă"
               required
               value={ageGroup}
               onChange={(e) => setAgeGroup(e.target.value)}
-              className="rounded-xl border-2 border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-primary"
+              className="rounded-xl bg-muted px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none ring-1 ring-transparent transition-all focus:bg-card focus:ring-2 focus:ring-primary"
             />
             <input
               type="number"
@@ -114,7 +114,7 @@ export function AttendanceSection({
               placeholder="Membri"
               value={memberCount}
               onChange={(e) => setMemberCount(e.target.value)}
-              className="rounded-xl border-2 border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-primary"
+              className="rounded-xl bg-muted px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none ring-1 ring-transparent transition-all focus:bg-card focus:ring-2 focus:ring-primary"
             />
             <input
               type="number"
@@ -122,7 +122,7 @@ export function AttendanceSection({
               placeholder="Non-membri"
               value={nonMemberCount}
               onChange={(e) => setNonMemberCount(e.target.value)}
-              className="rounded-xl border-2 border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-primary"
+              className="rounded-xl bg-muted px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none ring-1 ring-transparent transition-all focus:bg-card focus:ring-2 focus:ring-primary"
             />
             <button
               type="submit"

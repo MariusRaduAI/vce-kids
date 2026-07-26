@@ -39,8 +39,10 @@ export default async function EchipaPage() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="font-display text-3xl font-extrabold text-foreground">Echipă & Invitații</h1>
-      <p className="mt-1.5 font-medium text-muted-foreground">
+      <h1 className="font-display text-3xl font-extrabold tracking-tight text-foreground">
+        Echipă & Invitații
+      </h1>
+      <p className="mt-2 font-medium text-muted-foreground">
         Singurul mod de a intra în platformă. Fără invitație, nimeni nu-și poate crea cont.
       </p>
 
@@ -53,11 +55,11 @@ export default async function EchipaPage() {
           <h2 className="mb-3 text-sm font-bold uppercase tracking-wider text-muted-foreground">
             Invitații active
           </h2>
-          <div className="grid gap-2 sm:grid-cols-2">
+          <div className="grid gap-3 sm:grid-cols-2">
             {invites?.map((inv) => (
               <div
                 key={inv.id}
-                className="flex items-center justify-between rounded-2xl border-[3px] border-border bg-card px-4 py-3 text-sm"
+                className="flex items-center justify-between rounded-2xl bg-card px-4 py-3.5 text-sm shadow-sm ring-1 ring-border/60"
               >
                 <span className="font-semibold text-foreground">
                   {ROLE_LABELS[inv.role]}
@@ -77,17 +79,17 @@ export default async function EchipaPage() {
         <h2 className="mb-3 text-sm font-bold uppercase tracking-wider text-muted-foreground">
           Membri activi ({profiles?.length ?? 0})
         </h2>
-        <div className="grid gap-2 sm:grid-cols-2">
+        <div className="grid gap-3 sm:grid-cols-2">
           {(orgMemberships ?? []).map((m) => {
             const p = profiles?.find((pr) => pr.id === m.user_id);
             const accent = accentFor(m.id);
             return (
               <div
                 key={m.id}
-                className="flex items-center gap-3 rounded-2xl border-[3px] border-border bg-card px-4 py-3 text-sm"
+                className="flex items-center gap-3 rounded-2xl bg-card px-4 py-3.5 text-sm shadow-sm ring-1 ring-border/60 transition-shadow duration-200 hover:shadow-md"
               >
                 <div
-                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-xs font-extrabold text-white ${accent.badge}`}
+                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-xs font-extrabold text-white shadow-sm ${accent.grad}`}
                 >
                   {(p?.full_name ?? "?").charAt(0)}
                 </div>

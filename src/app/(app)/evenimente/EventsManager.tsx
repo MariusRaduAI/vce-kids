@@ -8,6 +8,9 @@ import type { Tables } from "@/lib/supabase/types";
 
 type EventRow = Tables<"events">;
 
+const inputClass =
+  "rounded-xl bg-muted px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none ring-1 ring-transparent transition-all duration-200 focus:bg-card focus:ring-2 focus:ring-primary";
+
 function toDatetimeLocal(iso: string) {
   const d = new Date(iso);
   const pad = (n: number) => String(n).padStart(2, "0");
@@ -55,40 +58,40 @@ function EventForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="grid gap-3 rounded-2xl border-[3px] border-border bg-card p-4 sm:grid-cols-2"
+      className="grid gap-3 rounded-2xl bg-card p-5 shadow-sm ring-1 ring-border/60 sm:grid-cols-2"
     >
       <input
         required
         placeholder="Titlu eveniment"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="rounded-xl border-2 border-border bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-primary sm:col-span-2"
+        className={`${inputClass} sm:col-span-2`}
       />
       <input
         required
         type="datetime-local"
         value={startAt}
         onChange={(e) => setStartAt(e.target.value)}
-        className="rounded-xl border-2 border-border bg-background px-3 py-2.5 text-sm text-foreground outline-none focus:border-primary"
+        className={inputClass}
       />
       <input
         placeholder="Locație (opțional)"
         value={location}
         onChange={(e) => setLocation(e.target.value)}
-        className="rounded-xl border-2 border-border bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-primary"
+        className={inputClass}
       />
       <textarea
         placeholder="Descriere (opțional)"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         rows={2}
-        className="rounded-xl border-2 border-border bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-primary sm:col-span-2"
+        className={`${inputClass} sm:col-span-2`}
       />
       <div className="flex gap-2 sm:col-span-2">
         <button
           type="submit"
           disabled={saving}
-          className="rounded-xl bg-primary px-4 py-2 text-sm font-bold text-primary-foreground disabled:opacity-50"
+          className="rounded-xl bg-primary px-4 py-2 text-sm font-bold text-white shadow-md shadow-primary/25 transition-all hover:shadow-lg hover:shadow-primary/40 disabled:opacity-50"
         >
           {saving ? "Se salvează..." : existing ? "Salvează modificările" : "Adaugă eveniment"}
         </button>
@@ -145,7 +148,7 @@ export function EventsManager({
           ) : (
             <button
               onClick={() => setShowCreate(true)}
-              className="inline-flex items-center gap-2 rounded-xl border-2 border-border bg-card px-4 py-2 text-sm font-bold text-foreground transition hover:bg-muted"
+              className="inline-flex items-center gap-2 rounded-xl bg-card px-4 py-2.5 text-sm font-bold text-foreground shadow-sm ring-1 ring-border/60 transition-shadow hover:shadow-md"
             >
               <Plus size={15} /> Adaugă eveniment
             </button>
@@ -165,10 +168,10 @@ export function EventsManager({
             ) : (
               <div
                 key={ev.id}
-                className="flex items-start gap-4 rounded-2xl border-[3px] border-border bg-card p-4"
+                className="group flex items-start gap-4 rounded-2xl bg-card p-5 shadow-sm ring-1 ring-border/60 transition-shadow duration-200 hover:shadow-md"
               >
                 <div
-                  className={`flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-2xl border-2 border-border text-white ${accent.badge}`}
+                  className={`flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-2xl bg-gradient-to-br text-white shadow-sm transition-transform duration-300 group-hover:scale-105 ${accent.grad}`}
                 >
                   <span className="text-[10px] font-bold uppercase leading-none">
                     {date.toLocaleDateString("ro-RO", { month: "short" })}

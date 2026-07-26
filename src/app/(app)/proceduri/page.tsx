@@ -58,7 +58,7 @@ export default async function ProceduriPage() {
             <h2 className="mb-3 text-sm font-bold uppercase tracking-wider text-muted-foreground">
               {CATEGORY_LABELS[category] ?? category}
             </h2>
-            <div className="divide-y-[3px] divide-border overflow-hidden rounded-[20px] border-[3px] border-border bg-card">
+            <div className="divide-y-[3px] divide-border overflow-hidden rounded-[20px] bg-card shadow-sm ring-1 ring-border/60">
               {items?.map((p) => {
                 const isConfirmed = confirmedMap.get(p.id) === p.version;
                 return (
@@ -74,7 +74,7 @@ export default async function ProceduriPage() {
                     )}
                     <span className="flex-1 text-sm font-semibold text-foreground">{p.title}</span>
                     {!p.org_id && (
-                      <span className="rounded-full border-2 border-border bg-muted px-2 py-0.5 text-xs font-bold text-muted-foreground">
+                      <span className="rounded-full bg-muted px-2 py-0.5 text-xs font-bold text-muted-foreground">
                         template
                       </span>
                     )}

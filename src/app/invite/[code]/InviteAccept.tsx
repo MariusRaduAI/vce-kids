@@ -83,7 +83,7 @@ export function InviteAccept({
           placeholder="Numele tău"
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
-          className="rounded-2xl border-[3px] border-border bg-background px-4 py-3 font-medium text-foreground placeholder:text-muted-foreground outline-none transition focus:border-primary"
+          className="rounded-2xl bg-muted px-4 py-3.5 font-medium text-foreground placeholder:text-muted-foreground outline-none ring-1 ring-transparent transition-all duration-200 focus:bg-card focus:ring-2 focus:ring-primary"
         />
         <input
           type="email"
@@ -92,7 +92,7 @@ export function InviteAccept({
           placeholder="email@exemplu.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="rounded-2xl border-[3px] border-border bg-background px-4 py-3 font-medium text-foreground placeholder:text-muted-foreground outline-none transition focus:border-primary read-only:opacity-60"
+          className="rounded-2xl bg-muted px-4 py-3.5 font-medium text-foreground placeholder:text-muted-foreground outline-none ring-1 ring-transparent transition-all duration-200 focus:bg-card focus:ring-2 focus:ring-primary read-only:opacity-60"
         />
         <input
           type="password"
@@ -101,7 +101,7 @@ export function InviteAccept({
           placeholder="Parolă (minim 8 caractere)"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="rounded-2xl border-[3px] border-border bg-background px-4 py-3 font-medium text-foreground placeholder:text-muted-foreground outline-none transition focus:border-primary"
+          className="rounded-2xl bg-muted px-4 py-3.5 font-medium text-foreground placeholder:text-muted-foreground outline-none ring-1 ring-transparent transition-all duration-200 focus:bg-card focus:ring-2 focus:ring-primary"
         />
         <input
           type="password"
@@ -109,12 +109,12 @@ export function InviteAccept({
           placeholder="Confirmă parola"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
-          className="rounded-2xl border-[3px] border-border bg-background px-4 py-3 font-medium text-foreground placeholder:text-muted-foreground outline-none transition focus:border-primary"
+          className="rounded-2xl bg-muted px-4 py-3.5 font-medium text-foreground placeholder:text-muted-foreground outline-none ring-1 ring-transparent transition-all duration-200 focus:bg-card focus:ring-2 focus:ring-primary"
         />
         <button
           type="submit"
           disabled={status === "sending"}
-          className="rounded-2xl border-[3px] border-border bg-primary px-4 py-3 font-display font-bold text-primary-foreground shadow-[0_4px_0_0_var(--color-border)] transition active:translate-y-1 active:shadow-none disabled:opacity-50"
+          className="rounded-2xl bg-primary px-4 py-3 font-display font-bold text-primary-foreground shadow-md transition-all duration-200 hover:shadow-lg active:scale-95 disabled:opacity-50"
         >
           {status === "sending" ? "Se creează contul..." : "Acceptă invitația și creează cont"}
         </button>

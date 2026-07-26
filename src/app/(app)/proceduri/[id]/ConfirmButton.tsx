@@ -46,7 +46,7 @@ export function ConfirmButton({
           router.refresh();
         }
       }}
-      className="rounded-2xl border-[3px] border-border bg-primary px-5 py-3 text-sm font-bold text-primary-foreground shadow-[0_4px_0_0_var(--color-border)] transition active:translate-y-1 active:shadow-none disabled:opacity-50"
+      className="rounded-2xl bg-primary px-5 py-3 text-sm font-bold text-primary-foreground shadow-md transition-all duration-200 hover:shadow-lg active:scale-95 disabled:opacity-50"
     >
       {loading ? "Se salvează..." : "Am citit și am înțeles"}
     </button>
