@@ -1,15 +1,15 @@
--- Model de guvernanță: VCE (super-admin) ține fix viziunea/principiile/siguranța la nivel de rețea;
--- fiecare biserică își configurează grupele, curriculum-ul și echipa; checklist minim de "lucrare
--- funcțională" vizibil la nivel de rețea; resurse cu aprobare; zonă doar pentru coordonatori.
+-- Model de guvernanta: VCE (super-admin) tine fix viziunea/principiile/siguranta la nivel de retea;
+-- fiecare biserica isi configureaza grupele, curriculum-ul si echipa; checklist minim de "lucrare
+-- functionala" vizibil la nivel de retea; resurse cu aprobare; zona doar pentru coordonatori.
 
 -- ─────────────────────────────────────────────────────────────
--- ORGANIZAȚII: biserică mentoră + curriculum folosit
+-- ORGANIZATII: biserica mentora + curriculum folosit
 -- ─────────────────────────────────────────────────────────────
 alter table public.organizations add column mentor_org_id uuid references public.organizations (id);
 alter table public.organizations add column curriculum_name text;
 
 -- ─────────────────────────────────────────────────────────────
--- GRUPE DE VÂRSTĂ — fiecare biserică își definește propriile grupe
+-- GRUPE DE VARSTA — fiecare biserica isi defineste propriile grupe
 -- ─────────────────────────────────────────────────────────────
 create table public.org_age_groups (
   id uuid primary key default gen_random_uuid(),
@@ -29,7 +29,7 @@ create policy "org_age_groups: org admin manage" on public.org_age_groups
   for all using (public.is_org_admin(org_id)) with check (public.is_org_admin(org_id));
 
 -- ─────────────────────────────────────────────────────────────
--- CHECKLIST "LUCRARE FUNCȚIONALĂ" — definit de VCE, urmărit per biserică
+-- CHECKLIST "LUCRARE FUNCTIONALA" — definit de VCE, urmarit per biserica
 -- ─────────────────────────────────────────────────────────────
 create table public.org_readiness_checks (
   id uuid primary key default gen_random_uuid(),
@@ -71,7 +71,7 @@ create policy "readiness_status: org admin manage" on public.org_readiness_statu
   for all using (public.is_org_admin(org_id)) with check (public.is_org_admin(org_id));
 
 -- ─────────────────────────────────────────────────────────────
--- CURSURI VCE — catalog la nivel de rețea, stabilit de super-admin, vizibil tuturor
+-- CURSURI VCE — catalog la nivel de retea, stabilit de super-admin, vizibil tuturor
 -- ─────────────────────────────────────────────────────────────
 create table public.courses (
   id uuid primary key default gen_random_uuid(),
@@ -95,7 +95,7 @@ create policy "courses: platform admin manage" on public.courses
   for all using (public.is_platform_admin()) with check (public.is_platform_admin());
 
 -- ─────────────────────────────────────────────────────────────
--- ZONA COORDONATORILOR — vizibilă doar adminilor (din orice biserică) + super-admin
+-- ZONA COORDONATORILOR — vizibila doar adminilor (din orice biserica) + super-admin
 -- ─────────────────────────────────────────────────────────────
 create table public.coordinator_hub_posts (
   id uuid primary key default gen_random_uuid(),
@@ -127,7 +127,7 @@ create policy "coordinator_hub: author or platform admin delete" on public.coord
   for delete using (created_by = auth.uid() or public.is_platform_admin());
 
 -- ─────────────────────────────────────────────────────────────
--- RESURSE — flux de aprobare (oricine propune, super-admin aprobă) + categorii libere
+-- RESURSE — flux de aprobare (oricine propune, super-admin aproba) + categorii libere
 -- ─────────────────────────────────────────────────────────────
 alter table public.resources drop constraint resources_category_check;
 alter table public.resources add column status text not null default 'approved'
@@ -148,7 +148,7 @@ create policy "resources: platform admin moderate" on public.resources
   for update using (public.is_platform_admin()) with check (public.is_platform_admin());
 
 -- ─────────────────────────────────────────────────────────────
--- PROCEDURI — "siguranta" și "urgente" rămân fixe la nivel de rețea (doar VCE le editează)
+-- PROCEDURI — "siguranta" si "urgente" raman fixe la nivel de retea (doar VCE le editeaza)
 -- ─────────────────────────────────────────────────────────────
 drop policy "procedures: org admin write" on public.procedures;
 create policy "procedures: org admin write" on public.procedures

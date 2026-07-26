@@ -1,78 +1,78 @@
--- Resurse (template global) + Recepție/Security (ca proceduri, org_id null), din vk-team.com.
+-- Resurse (template global) + Receptie/Security (ca proceduri, org_id null), din vk-team.com.
 
 insert into public.resources (org_id, category, title, description, file_url) values
-(null, 'altele', 'Template Pregătire SIM', 'Template-ul oficial pentru pregătirea Serviciului cu Impact Maxim', 'https://docs.google.com/spreadsheets/d/1qcVJ44Reyqg45C4ZGw8JL-YNXVngX8UhSeO1Z2a2SlU/edit?usp=sharing'),
-(null, 'altele', 'Ghid Învățător', 'Ghid complet pentru învățătorii Vertical Kids', null),
-(null, 'altele', 'Manual Voluntar', 'Tot ce trebuie să știe un voluntar nou', null),
+(null, 'altele', 'Template Pregatire SIM', 'Template-ul oficial pentru pregatirea Serviciului cu Impact Maxim', 'https://docs.google.com/spreadsheets/d/1qcVJ44Reyqg45C4ZGw8JL-YNXVngX8UhSeO1Z2a2SlU/edit?usp=sharing'),
+(null, 'altele', 'Ghid Invatator', 'Ghid complet pentru invatatorii Vertical Kids', null),
+(null, 'altele', 'Manual Voluntar', 'Tot ce trebuie sa stie un voluntar nou', null),
 (null, 'altele', 'Materiale Curriculum', 'Materialele pentru curriculum-ul curent', null),
-(null, 'altele', 'Formulare Utile', 'Formularele necesare pentru activități', null);
+(null, 'altele', 'Formulare Utile', 'Formularele necesare pentru activitati', null);
 
 insert into public.procedures (org_id, category, title, body) values
-(null, 'receptie', 'Recepție — Ghid de Slujire', $$Scopul nostru este să asigurăm părinții că fiecare copil este prețuit și în siguranță.
+(null, 'receptie', 'Receptie — Ghid de Slujire', $$Scopul nostru este sa asiguram parintii ca fiecare copil este pretuit si in siguranta.
 
-## Instrucțiuni pentru ziua de slujire
-1. Sosire: 08:30 (SIM1) / 11:00 (SIM2) – rugăciune & organizare
-2. Intrare în slujire: 09:10 (SIM1) / 11:55 (SIM2)
-3. Ținută decentă, ecuson vizibil, atitudine primitoare
-4. Verificarea stării de sănătate (temperatură, alergii, boli contagioase)
-5. Atribuirea codului de identificare copil: inițiala prenumelui + inițiala numelui + număr (ex: Avram Stoican → 01AS)
-6. Informarea părintelui: apariția codului pe ecran = părintele este chemat
-7. Un slujitor conduce copilul la grupă, celălalt rămâne la recepție
-8. Completarea fișelor de prezență + tabel online
-9. Spălarea și distribuirea fructelor pe grupe
-10. Predarea listelor de prezență la final
-11. Orice neregulă este raportată coordonatorului
-12. Asigurarea că învățătorii știu unde se transmit codurile (grup VK – Vertical Kids)
-13. Copiii întârziați (după 10:00 / 12:30) sunt direcționați spre sala de închinare
-14. Pentru copiii 6+ ani: telefoanele NU sunt permise în grupă
-15. La final, ecusoanele și echipamentele se pun la loc
+## Instructiuni pentru ziua de slujire
+1. Sosire: 08:30 (SIM1) / 11:00 (SIM2) – rugaciune & organizare
+2. Intrare in slujire: 09:10 (SIM1) / 11:55 (SIM2)
+3. Tinuta decenta, ecuson vizibil, atitudine primitoare
+4. Verificarea starii de sanatate (temperatura, alergii, boli contagioase)
+5. Atribuirea codului de identificare copil: initiala prenumelui + initiala numelui + numar (ex: Avram Stoican → 01AS)
+6. Informarea parintelui: aparitia codului pe ecran = parintele este chemat
+7. Un slujitor conduce copilul la grupa, celalalt ramane la receptie
+8. Completarea fiselor de prezenta + tabel online
+9. Spalarea si distribuirea fructelor pe grupe
+10. Predarea listelor de prezenta la final
+11. Orice neregula este raportata coordonatorului
+12. Asigurarea ca invatatorii stiu unde se transmit codurile (grup VK – Vertical Kids)
+13. Copiii intarziati (dupa 10:00 / 12:30) sunt directionati spre sala de inchinare
+14. Pentru copiii 6+ ani: telefoanele NU sunt permise in grupa
+15. La final, ecusoanele si echipamentele se pun la loc
 
-## Copiii NU sunt primiți dacă prezintă
-- Mucozități colorate
-- Tuse productivă
-- Febră în ziua anterioară
-- Apatie, frisoane, stare de moleșeală
+## Copiii NU sunt primiti daca prezinta
+- Mucozitati colorate
+- Tuse productiva
+- Febra in ziua anterioara
+- Apatie, frisoane, stare de moleseala
 - Tratament cu antibiotice
-- Enterocolită sau alte boli contagioase
+- Enterocolita sau alte boli contagioase
 
-În aceste situații, părintele este rugat politicos să plece cu copilul acasă.$$),
+In aceste situatii, parintele este rugat politicos sa plece cu copilul acasa.$$),
 
-(null, 'receptie', 'Security Kids — Ghid de Slujire', $$**Locație:** Recepția Kids (subsol) · **Rol:** asigurarea unui spațiu sigur și organizat pentru copii și părinți
+(null, 'receptie', 'Security Kids — Ghid de Slujire', $$**Locatie:** Receptia Kids (subsol) · **Rol:** asigurarea unui spatiu sigur si organizat pentru copii si parinti
 
 ## Program
-- SIM 1: sosire 08:30, intrare în slujire 09:10
-- SIM 2: sosire 11:00, intrare în slujire 11:40
+- SIM 1: sosire 08:30, intrare in slujire 09:10
+- SIM 2: sosire 11:00, intrare in slujire 11:40
 
-Persoana rămâne pe toată durata programului în zona Recepție Kids.
+Persoana ramane pe toata durata programului in zona Receptie Kids.
 
 ## Obiective principale
 - Acces controlat
-- Copiii nu părăsesc zona fără adult
-- Părinții nu rămân în zona Kids după check-in
-- Intervenție politicos-fermă
-- Raportare imediată coordonator
+- Copiii nu parasesc zona fara adult
+- Parintii nu raman in zona Kids dupa check-in
+- Interventie politicos-ferma
+- Raportare imediata coordonator
 
-## Responsabilități suplimentare
-- Supravegherea fluxului intrare–ieșire
-- Observarea copiilor neliniștiți
-- Suport echipa de recepție
-- Confidențialitate totală
+## Responsabilitati suplimentare
+- Supravegherea fluxului intrare–iesire
+- Observarea copiilor nelinistiti
+- Suport echipa de receptie
+- Confidentialitate totala
 
-## Atitudine recomandată
+## Atitudine recomandata
 Vigilent dar prietenos · Politicos dar ferm · Proactiv
 
-## Protocol de urgență
+## Protocol de urgenta
 - Incendiu: evacuare pe traseele marcate
-- Cutremur: copiii rămân în clase, sub mobilier
-- Evacuare: copiii merg cu liderii spre punctul de întâlnire
+- Cutremur: copiii raman in clase, sub mobilier
+- Evacuare: copiii merg cu liderii spre punctul de intalnire
 
 ## Security NU
-- Disciplinează copii
-- Intră în clase
-- Poartă discuții lungi cu părinții
+- Disciplineaza copii
+- Intra in clase
+- Poarta discutii lungi cu parintii
 
 ## Security DA
 - Previne acces neautorizat
-- Supraveghează fluxul
-- Intervine ferm și politicos
-- Raportează imediat incidente$$);
+- Supravegheaza fluxul
+- Intervine ferm si politicos
+- Raporteaza imediat incidente$$);
