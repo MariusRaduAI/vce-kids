@@ -43,16 +43,16 @@ export function CreateInviteForm({ orgId }: { orgId: string }) {
   }
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-      <h2 className="mb-4 font-medium text-white">Invită pe cineva nou</h2>
+    <div className="rounded-[24px] border-[3px] border-border bg-card p-5">
+      <h2 className="mb-4 font-display font-bold text-foreground">Invită pe cineva nou</h2>
       <form onSubmit={handleSubmit} className="grid gap-3 sm:grid-cols-2">
         <select
           value={role}
           onChange={(e) => setRole(e.target.value)}
-          className="rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white outline-none focus:border-white/30"
+          className="rounded-xl border-2 border-border bg-background px-3 py-2.5 text-sm text-foreground outline-none focus:border-primary"
         >
           {ROLES.map((r) => (
-            <option key={r.value} value={r.value} className="bg-neutral-900">
+            <option key={r.value} value={r.value}>
               {r.label}
             </option>
           ))}
@@ -62,34 +62,34 @@ export function CreateInviteForm({ orgId }: { orgId: string }) {
           placeholder="Departament (opțional) — ex: recepție"
           value={department}
           onChange={(e) => setDepartment(e.target.value)}
-          className="rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white placeholder:text-neutral-500 outline-none focus:border-white/30"
+          className="rounded-xl border-2 border-border bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-primary"
         />
         <input
           type="email"
           placeholder="Email (opțional — leagă invitația de un email anume)"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white placeholder:text-neutral-500 outline-none focus:border-white/30 sm:col-span-2"
+          className="rounded-xl border-2 border-border bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-primary sm:col-span-2"
         />
         <button
           type="submit"
           disabled={loading}
-          className="rounded-lg bg-white px-4 py-2.5 text-sm font-medium text-black transition hover:bg-neutral-200 disabled:opacity-50 sm:col-span-2"
+          className="rounded-xl bg-primary px-4 py-2.5 text-sm font-bold text-primary-foreground transition disabled:opacity-50 sm:col-span-2"
         >
           {loading ? "Se generează..." : "Generează link de invitație"}
         </button>
       </form>
 
       {link && (
-        <div className="mt-4 flex items-center gap-2 rounded-lg bg-black/40 px-3 py-2.5">
-          <code className="flex-1 truncate text-xs text-amber-400">{link}</code>
+        <div className="mt-4 flex items-center gap-2 rounded-xl border-2 border-border bg-background px-3 py-2.5">
+          <code className="flex-1 truncate text-xs font-bold text-primary">{link}</code>
           <button
             onClick={() => {
               navigator.clipboard.writeText(link);
               setCopied(true);
               setTimeout(() => setCopied(false), 1500);
             }}
-            className="shrink-0 text-neutral-400 hover:text-white"
+            className="shrink-0 text-muted-foreground hover:text-foreground"
           >
             {copied ? <Check size={16} /> : <Copy size={16} />}
           </button>

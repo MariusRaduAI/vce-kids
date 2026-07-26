@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Users, Pencil, Trash2, Plus } from "lucide-react";
+import { Users, Pencil, Trash2, Plus, Crown } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
+import { accentFor } from "@/lib/colors";
 import type { Tables } from "@/lib/supabase/types";
 
 type NodeRow = Tables<"org_chart_nodes">;
@@ -69,27 +70,25 @@ function NodeForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="grid gap-3 rounded-xl border border-white/10 bg-black/20 p-4 sm:grid-cols-2"
+      className="grid gap-3 rounded-2xl border-2 border-border bg-background p-4 sm:grid-cols-2"
     >
       <input
         required
         placeholder="Titlu / rol (ex: Coordonator Kids)"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-neutral-500 outline-none focus:border-white/30 sm:col-span-2"
+        className="rounded-xl border-2 border-border bg-card px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-primary sm:col-span-2"
       />
       <select
         value={parentId}
         onChange={(e) => setParentId(e.target.value)}
-        className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white outline-none focus:border-white/30"
+        className="rounded-xl border-2 border-border bg-card px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
       >
-        <option value="" className="bg-neutral-900">
-          (rădăcină — fără superior)
-        </option>
+        <option value="">(rădăcină — fără superior)</option>
         {flatten(nodes)
           .filter((n) => n.id !== existing?.id)
           .map((n) => (
-            <option key={n.id} value={n.id} className="bg-neutral-900">
+            <option key={n.id} value={n.id}>
               sub: {n.title}
             </option>
           ))}
@@ -97,13 +96,11 @@ function NodeForm({
       <select
         value={membershipId}
         onChange={(e) => setMembershipId(e.target.value)}
-        className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white outline-none focus:border-white/30"
+        className="rounded-xl border-2 border-border bg-card px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
       >
-        <option value="" className="bg-neutral-900">
-          (fără persoană din cont legată)
-        </option>
+        <option value="">(fără persoană din cont legată)</option>
         {members.map((m) => (
-          <option key={m.membershipId} value={m.membershipId} className="bg-neutral-900">
+          <option key={m.membershipId} value={m.membershipId}>
             {m.name}
           </option>
         ))}
@@ -112,14 +109,14 @@ function NodeForm({
         <button
           type="submit"
           disabled={saving}
-          className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-black transition hover:bg-neutral-200 disabled:opacity-50"
+          className="rounded-xl bg-primary px-4 py-2 text-sm font-bold text-primary-foreground disabled:opacity-50"
         >
           {saving ? "Se salvează..." : existing ? "Salvează" : "Adaugă"}
         </button>
         <button
           type="button"
           onClick={onDone}
-          className="rounded-lg px-4 py-2 text-sm text-neutral-400 hover:text-white"
+          className="rounded-xl px-4 py-2 text-sm font-semibold text-muted-foreground hover:text-foreground"
         >
           Renunță
         </button>
@@ -153,6 +150,9 @@ function NodeCard({
   setAddingUnderId: (id: string | null) => void;
   refresh: () => void;
 }) {
+  const accent = accentFor(node.id);
+  const isRoot = depth === 0;
+
   async function handleDelete() {
     if (!confirm(`Ștergi "${node.title}"? Se șterg și toți subordonații lui.`)) return;
     const supabase = createClient();
@@ -161,33 +161,37 @@ function NodeCard({
   }
 
   return (
-    <div className={depth > 0 ? "mt-3 ml-6 border-l border-white/10 pl-6" : "mt-3"}>
+    <div>
       {editingId === node.id ? (
         <NodeForm orgId={orgId} nodes={allNodes} members={members} existing={node} onDone={refresh} />
       ) : (
-        <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3">
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-amber-400/10 text-amber-400">
-            <Users size={15} />
+        <div
+          className={`flex items-center gap-3 rounded-2xl border-[3px] border-border bg-card p-3.5 shadow-[0_3px_0_0_var(--color-border)] ${isRoot ? "bg-gradient-to-br from-card to-muted" : ""}`}
+        >
+          <div
+            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border-2 border-border text-white ${accent.badge}`}
+          >
+            {isRoot ? <Crown size={17} /> : <Users size={16} />}
           </div>
-          <span className="flex-1 text-sm text-white">{node.title}</span>
+          <span className="flex-1 text-sm font-bold text-foreground">{node.title}</span>
           {isOrgAdmin && (
             <div className="flex shrink-0 gap-1">
               <button
                 onClick={() => setAddingUnderId(node.id)}
-                className="rounded-lg p-1.5 text-neutral-500 hover:bg-white/10 hover:text-white"
+                className="rounded-lg p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground"
                 title="Adaugă subordonat"
               >
                 <Plus size={14} />
               </button>
               <button
                 onClick={() => setEditingId(node.id)}
-                className="rounded-lg p-1.5 text-neutral-500 hover:bg-white/10 hover:text-white"
+                className="rounded-lg p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground"
               >
                 <Pencil size={14} />
               </button>
               <button
                 onClick={handleDelete}
-                className="rounded-lg p-1.5 text-neutral-500 hover:bg-red-500/10 hover:text-red-400"
+                className="rounded-lg p-1.5 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
               >
                 <Trash2 size={14} />
               </button>
@@ -197,7 +201,7 @@ function NodeCard({
       )}
 
       {addingUnderId === node.id && (
-        <div className="mt-3 ml-6 border-l border-white/10 pl-6">
+        <div className="mt-3">
           <NodeForm
             orgId={orgId}
             nodes={allNodes}
@@ -208,22 +212,32 @@ function NodeCard({
         </div>
       )}
 
-      {node.children.map((child) => (
-        <NodeCard
-          key={child.id}
-          node={child}
-          depth={depth + 1}
-          isOrgAdmin={isOrgAdmin}
-          orgId={orgId}
-          allNodes={allNodes}
-          members={members}
-          editingId={editingId}
-          addingUnderId={addingUnderId}
-          setEditingId={setEditingId}
-          setAddingUnderId={setAddingUnderId}
-          refresh={refresh}
-        />
-      ))}
+      {node.children.length > 0 && (
+        <div
+          className={
+            isRoot
+              ? "mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
+              : "mt-3 ml-6 space-y-3 border-l-2 border-border pl-6"
+          }
+        >
+          {node.children.map((child) => (
+            <NodeCard
+              key={child.id}
+              node={child}
+              depth={depth + 1}
+              isOrgAdmin={isOrgAdmin}
+              orgId={orgId}
+              allNodes={allNodes}
+              members={members}
+              editingId={editingId}
+              addingUnderId={addingUnderId}
+              setEditingId={setEditingId}
+              setAddingUnderId={setAddingUnderId}
+              refresh={refresh}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -268,7 +282,7 @@ export function OrgChartManager({
           ) : (
             <button
               onClick={() => setAddingRoot(true)}
-              className="inline-flex items-center gap-2 rounded-lg bg-white/10 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/20"
+              className="inline-flex items-center gap-2 rounded-xl border-2 border-border bg-card px-4 py-2 text-sm font-bold text-foreground transition hover:bg-muted"
             >
               <Plus size={15} /> Adaugă rol la vârf
             </button>
@@ -277,24 +291,26 @@ export function OrgChartManager({
       )}
 
       {tree.length === 0 ? (
-        <p className="text-sm text-neutral-500">Organigrama nu a fost încă completată.</p>
+        <p className="text-sm text-muted-foreground">Organigrama nu a fost încă completată.</p>
       ) : (
-        tree.map((node) => (
-          <NodeCard
-            key={node.id}
-            node={node}
-            depth={0}
-            isOrgAdmin={isOrgAdmin}
-            orgId={orgId}
-            allNodes={nodes}
-            members={members}
-            editingId={editingId}
-            addingUnderId={addingUnderId}
-            setEditingId={setEditingId}
-            setAddingUnderId={setAddingUnderId}
-            refresh={refresh}
-          />
-        ))
+        <div className="space-y-4">
+          {tree.map((node) => (
+            <NodeCard
+              key={node.id}
+              node={node}
+              depth={0}
+              isOrgAdmin={isOrgAdmin}
+              orgId={orgId}
+              allNodes={nodes}
+              members={members}
+              editingId={editingId}
+              addingUnderId={addingUnderId}
+              setEditingId={setEditingId}
+              setAddingUnderId={setAddingUnderId}
+              refresh={refresh}
+            />
+          ))}
+        </div>
       )}
     </div>
   );

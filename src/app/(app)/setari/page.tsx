@@ -22,8 +22,8 @@ export default async function SetariPage() {
   return (
     <div className="mx-auto max-w-2xl space-y-10">
       <div>
-        <h1 className="text-2xl font-semibold text-neutral-900 dark:text-white">Contul meu</h1>
-        <p className="mt-1 text-neutral-500 dark:text-neutral-400">
+        <h1 className="font-display text-3xl font-extrabold text-foreground">Contul meu</h1>
+        <p className="mt-1.5 font-medium text-muted-foreground">
           Detaliile tale și lucrarea ta. Aspectul (luminos/întunecat) e sus, în antet.
         </p>
       </div>

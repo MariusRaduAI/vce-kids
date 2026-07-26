@@ -35,18 +35,18 @@ export default async function ProcedureDetailPage({
     <div className="mx-auto max-w-2xl">
       <Link
         href="/proceduri"
-        className="mb-6 inline-flex items-center gap-1 text-sm text-neutral-400 hover:text-white"
+        className="mb-6 inline-flex items-center gap-1 text-sm font-semibold text-muted-foreground hover:text-foreground"
       >
         <ArrowLeft size={14} /> Toate procedurile
       </Link>
 
-      <h1 className="text-2xl font-semibold text-white">{procedure.title}</h1>
-      <p className="mt-1 text-sm text-neutral-500">
+      <h1 className="font-display text-3xl font-extrabold text-foreground">{procedure.title}</h1>
+      <p className="mt-1 text-sm font-medium text-muted-foreground">
         Versiunea {procedure.version} · actualizată{" "}
         {new Date(procedure.updated_at).toLocaleDateString("ro-RO")}
       </p>
 
-      <div className="prose prose-invert prose-neutral mt-6 max-w-none prose-headings:font-medium prose-a:text-amber-400">
+      <div className="prose dark:prose-invert prose-neutral mt-6 max-w-none prose-headings:font-display prose-headings:font-bold prose-a:text-primary prose-strong:text-foreground">
         <ReactMarkdown>{procedure.body}</ReactMarkdown>
       </div>
 

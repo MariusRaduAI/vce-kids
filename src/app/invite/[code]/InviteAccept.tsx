@@ -71,9 +71,9 @@ export function InviteAccept({
 
   return (
     <div>
-      <p className="mb-6 text-sm text-neutral-300">
-        Ai fost invitat(ă) în echipa <strong className="text-white">{orgName}</strong>, ca{" "}
-        <strong className="text-white">{ROLE_LABELS[role] ?? role}</strong>
+      <p className="mb-6 text-sm font-medium text-muted-foreground">
+        Ai fost invitat(ă) în echipa <strong className="text-foreground">{orgName}</strong>, ca{" "}
+        <strong className="text-foreground">{ROLE_LABELS[role] ?? role}</strong>
         {department ? ` — ${department}` : ""}. Alege-ți o parolă ca să intri oricând.
       </p>
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
@@ -83,7 +83,7 @@ export function InviteAccept({
           placeholder="Numele tău"
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
-          className="rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-neutral-500 outline-none focus:border-white/30"
+          className="rounded-2xl border-[3px] border-border bg-background px-4 py-3 font-medium text-foreground placeholder:text-muted-foreground outline-none transition focus:border-primary"
         />
         <input
           type="email"
@@ -92,7 +92,7 @@ export function InviteAccept({
           placeholder="email@exemplu.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-neutral-500 outline-none focus:border-white/30 read-only:opacity-60"
+          className="rounded-2xl border-[3px] border-border bg-background px-4 py-3 font-medium text-foreground placeholder:text-muted-foreground outline-none transition focus:border-primary read-only:opacity-60"
         />
         <input
           type="password"
@@ -101,7 +101,7 @@ export function InviteAccept({
           placeholder="Parolă (minim 8 caractere)"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-neutral-500 outline-none focus:border-white/30"
+          className="rounded-2xl border-[3px] border-border bg-background px-4 py-3 font-medium text-foreground placeholder:text-muted-foreground outline-none transition focus:border-primary"
         />
         <input
           type="password"
@@ -109,16 +109,16 @@ export function InviteAccept({
           placeholder="Confirmă parola"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
-          className="rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-neutral-500 outline-none focus:border-white/30"
+          className="rounded-2xl border-[3px] border-border bg-background px-4 py-3 font-medium text-foreground placeholder:text-muted-foreground outline-none transition focus:border-primary"
         />
         <button
           type="submit"
           disabled={status === "sending"}
-          className="rounded-lg bg-white px-4 py-3 font-medium text-black transition hover:bg-neutral-200 disabled:opacity-50"
+          className="rounded-2xl border-[3px] border-border bg-primary px-4 py-3 font-display font-bold text-primary-foreground shadow-[0_4px_0_0_var(--color-border)] transition active:translate-y-1 active:shadow-none disabled:opacity-50"
         >
           {status === "sending" ? "Se creează contul..." : "Acceptă invitația și creează cont"}
         </button>
-        {status === "error" && <p className="text-sm text-red-400">{errorMsg}</p>}
+        {status === "error" && <p className="text-sm font-medium text-destructive">{errorMsg}</p>}
       </form>
     </div>
   );

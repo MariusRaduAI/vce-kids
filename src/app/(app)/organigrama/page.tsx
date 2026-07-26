@@ -32,8 +32,8 @@ export default async function OrganigramaPage() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="text-2xl font-semibold text-white">Organigramă</h1>
-      <p className="mt-1 text-neutral-400">
+      <h1 className="font-display text-3xl font-extrabold text-foreground">Organigramă</h1>
+      <p className="mt-1.5 font-medium text-muted-foreground">
         Echipa de coordonare a lucrării de copii — pentru orice nevoie, îndreaptă-te spre responsabilul potrivit.
       </p>
 

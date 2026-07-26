@@ -15,8 +15,8 @@ export default async function EvenimentePage() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="text-2xl font-semibold text-white">Evenimente</h1>
-      <p className="mt-1 text-neutral-400">
+      <h1 className="font-display text-3xl font-extrabold text-foreground">Evenimente</h1>
+      <p className="mt-1.5 font-medium text-muted-foreground">
         Evenimente viitoare, tabere și întâlniri de echipă.
       </p>
 

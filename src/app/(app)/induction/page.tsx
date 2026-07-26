@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { CheckCircle2, Circle, ChevronRight } from "lucide-react";
+import { CheckCircle2, Circle, ChevronRight, Sparkles } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/lib/current-user";
+import { accentFor } from "@/lib/colors";
 
 export default async function InductionPage() {
   const supabase = await createClient();
@@ -25,41 +26,47 @@ export default async function InductionPage() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="text-2xl font-semibold text-white">Induction</h1>
-      <p className="mt-1 text-neutral-400">
+      <h1 className="font-display text-3xl font-extrabold text-foreground">Induction</h1>
+      <p className="mt-1.5 font-medium text-muted-foreground">
         Tot ce trebuie să știi ca să slujești în echipa Vertical Kids.
       </p>
 
       {total > 0 && (
         <div className="mt-6 flex items-center gap-3">
-          <div className="h-2 flex-1 overflow-hidden rounded-full bg-white/10">
+          <div className="h-3 flex-1 overflow-hidden rounded-full border-2 border-border bg-muted">
             <div
-              className="h-full bg-amber-400 transition-all"
+              className="h-full bg-gradient-to-r from-primary to-secondary transition-all"
               style={{ width: `${(done / total) * 100}%` }}
             />
           </div>
-          <span className="text-sm text-neutral-400">
+          <span className="text-sm font-bold text-muted-foreground">
             {done}/{total}
           </span>
         </div>
       )}
 
-      <div className="mt-8 divide-y divide-white/10 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+      <div className="mt-8 grid gap-3 sm:grid-cols-2">
         {(steps ?? []).map((step) => {
           const isDone = completedIds.has(step.id);
+          const accent = accentFor(step.id);
           return (
             <Link
               key={step.id}
               href={`/induction/${step.id}`}
-              className="flex items-center gap-3 px-4 py-3.5 transition hover:bg-white/[0.06]"
+              className={`flex items-center gap-3 rounded-2xl border-[3px] border-border bg-card p-4 transition hover:-translate-y-0.5 ${accent.ring}`}
             >
+              <div
+                className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border-2 border-border text-white ${accent.badge}`}
+              >
+                <Sparkles size={15} />
+              </div>
+              <span className="flex-1 text-sm font-bold text-foreground">{step.title}</span>
               {isDone ? (
-                <CheckCircle2 size={18} className="shrink-0 text-emerald-400" />
+                <CheckCircle2 size={18} className="shrink-0 text-success" />
               ) : (
-                <Circle size={18} className="shrink-0 text-neutral-600" />
+                <Circle size={18} className="shrink-0 text-muted-foreground/40" />
               )}
-              <span className="flex-1 text-sm text-white">{step.title}</span>
-              <ChevronRight size={16} className="text-neutral-600" />
+              <ChevronRight size={16} className="shrink-0 text-muted-foreground/40" />
             </Link>
           );
         })}
